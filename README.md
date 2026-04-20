@@ -53,17 +53,25 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_create"></a> [create](#input\_create) | n/a | `bool` | `true` | no |
-| <a name="input_labels"></a> [labels](#input\_labels) | n/a | `map(string)` | `{}` | no |
-| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | `"fsn1"` | no |
-| <a name="input_name"></a> [name](#input\_name) | n/a | `string` | n/a | yes |
+| <a name="input_access_settings"></a> [access\_settings](#input\_access\_settings) | Access settings for the storage box. | <pre>object({<br/>    reachable_externally = optional(bool, true)<br/>    samba_enabled        = optional(bool, false)<br/>    ssh_enabled          = optional(bool, true)<br/>    webdav_enabled       = optional(bool, false)<br/>    zfs_enabled          = optional(bool, false)<br/>  })</pre> | `null` | no |
+| <a name="input_create"></a> [create](#input\_create) | Whether to create the storage box. | `bool` | `true` | no |
+| <a name="input_delete_protection"></a> [delete\_protection](#input\_delete\_protection) | Enable delete protection. | `bool` | `false` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | Labels to apply. | `map(string)` | `{}` | no |
+| <a name="input_location"></a> [location](#input\_location) | Location of the storage box. | `string` | `"fsn1"` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the storage box. | `string` | n/a | yes |
+| <a name="input_password"></a> [password](#input\_password) | Password for the storage box. | `string` | n/a | yes |
+| <a name="input_snapshot_plan"></a> [snapshot\_plan](#input\_snapshot\_plan) | Snapshot plan configuration. | <pre>object({<br/>    max_snapshots = number<br/>    minute        = number<br/>    hour          = number<br/>    day_of_week   = optional(number)<br/>    day_of_month  = optional(number)<br/>  })</pre> | `null` | no |
+| <a name="input_ssh_keys"></a> [ssh\_keys](#input\_ssh\_keys) | SSH public keys to inject. | `set(string)` | `[]` | no |
+| <a name="input_storage_box_type"></a> [storage\_box\_type](#input\_storage\_box\_type) | Type of the storage box (e.g., bx11, bx21). | `string` | `"bx11"` | no |
 
 ## Outputs
 
 | Name | Description |
 | ---- | ----------- |
-| <a name="output_id"></a> [id](#output\_id) | n/a |
-| <a name="output_name"></a> [name](#output\_name) | n/a |
+| <a name="output_id"></a> [id](#output\_id) | ID of the storage box. |
+| <a name="output_name"></a> [name](#output\_name) | Name of the storage box. |
+| <a name="output_server"></a> [server](#output\_server) | FQDN of the storage box. |
+| <a name="output_username"></a> [username](#output\_username) | Primary username. |
 <!-- END_TF_DOCS -->
 
 ## License
