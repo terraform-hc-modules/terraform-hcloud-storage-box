@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/compare/v1.0.0...v1.1.0) (2026-04-20)
+
+
+### Features
+
+* improve storage box validations, outputs, tests ([773cdba](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/commit/773cdba90b30103ea538d71c9511d8dc6e601cb6))
+
 # 1.0.0 (2026-04-20)
 
 
