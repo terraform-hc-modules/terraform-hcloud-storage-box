@@ -38,7 +38,7 @@ module "storage" {
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6 |
 | <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.45 |
 
 ## Providers
@@ -74,9 +74,14 @@ No resources.
 
 | Name | Description |
 | ---- | ----------- |
+| <a name="output_access_settings"></a> [access\_settings](#output\_access\_settings) | Access settings of the storage box. |
 | <a name="output_id"></a> [id](#output\_id) | ID of the storage box. |
+| <a name="output_location"></a> [location](#output\_location) | Location of the storage box. |
 | <a name="output_name"></a> [name](#output\_name) | Name of the storage box. |
 | <a name="output_server"></a> [server](#output\_server) | FQDN of the storage box. |
+| <a name="output_snapshot_plan"></a> [snapshot\_plan](#output\_snapshot\_plan) | Snapshot plan of the storage box. |
+| <a name="output_storage_box"></a> [storage\_box](#output\_storage\_box) | Storage box outputs as an object. |
+| <a name="output_storage_box_type"></a> [storage\_box\_type](#output\_storage\_box\_type) | Type of the storage box. |
 | <a name="output_username"></a> [username](#output\_username) | Primary username. |
 <!-- END_TF_DOCS -->
 
