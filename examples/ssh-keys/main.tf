@@ -36,4 +36,3 @@ module "storage" {
 output "server" {
   value = module.storage.server
 }
-

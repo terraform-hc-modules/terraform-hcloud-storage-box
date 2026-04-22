@@ -34,4 +34,3 @@ module "storage" {
 output "snapshot_plan" {
   value = module.storage.snapshot_plan
 }
-

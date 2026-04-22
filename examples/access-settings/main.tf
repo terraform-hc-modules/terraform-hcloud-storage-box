@@ -35,4 +35,3 @@ module "storage" {
 output "storage_box" {
   value = module.storage.storage_box
 }
-
