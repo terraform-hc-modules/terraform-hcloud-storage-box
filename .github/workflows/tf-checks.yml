@@ -5,10 +5,30 @@ on:
   workflow_dispatch:
 
 jobs:
+  access-settings-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
+    with:
+      working_directory: './examples/access-settings/'
+      provider: none
   complete-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@v2
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/complete/'
+      provider: none
+  simple-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
+    with:
+      working_directory: './examples/simple/'
+      provider: none
+  snapshot-plan-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
+    with:
+      working_directory: './examples/snapshot-plan/'
+      provider: none
+  ssh-keys-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
+    with:
+      working_directory: './examples/ssh-keys/'
       provider: none
 
 # Seperate Job for TFlint workflow call
