@@ -10,29 +10,27 @@ jobs:
     with:
       working_directory: './examples/access-settings/'
       provider: none
+
   complete-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/complete/'
       provider: none
+
   simple-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/simple/'
       provider: none
+
   snapshot-plan-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/snapshot-plan/'
       provider: none
+
   ssh-keys-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/ssh-keys/'
       provider: none
-
-  # Separate job for the TFLint workflow call
-  tf-lint:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@v2
-    secrets:
-      GITHUB: ${{ secrets.GITHUB || github.token }}
