@@ -88,3 +88,42 @@ variable "snapshot_plan" {
   })
   default = null
 }
+
+variable "subaccounts" {
+  description = "Map of subaccounts to create on the storage box. Passwords are set via 'subaccount_passwords' using the same keys."
+  type = map(object({
+    name           = optional(string)
+    home_directory = string
+    description    = optional(string)
+    labels         = optional(map(string), {})
+    access_settings = optional(object({
+      reachable_externally = optional(bool)
+      readonly             = optional(bool)
+      samba_enabled        = optional(bool)
+      ssh_enabled          = optional(bool)
+      webdav_enabled       = optional(bool)
+    }))
+  }))
+  default = {}
+}
+
+variable "subaccount_passwords" {
+  description = "Map of subaccount passwords, keyed like 'subaccounts'. Kept separate so the rest of the subaccount config stays visible in plans."
+  type        = map(string)
+  default     = {}
+  sensitive   = true
+
+  validation {
+    condition     = alltrue([for k in keys(var.subaccounts) : contains(keys(var.subaccount_passwords), k)])
+    error_message = "subaccount_passwords must contain a password for every key in subaccounts."
+  }
+}
+
+variable "snapshots" {
+  description = "Map of manual snapshots to create on the storage box."
+  type = map(object({
+    description = optional(string)
+    labels      = optional(map(string), {})
+  }))
+  default = {}
+}

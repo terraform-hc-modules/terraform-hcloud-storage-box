@@ -11,6 +11,10 @@ module "wrapper" {
   ssh_keys          = try(each.value.ssh_keys, [])
   access_settings   = try(each.value.access_settings, null)
   snapshot_plan     = try(each.value.snapshot_plan, null)
+
+  subaccounts          = try(each.value.subaccounts, {})
+  subaccount_passwords = try(each.value.subaccount_passwords, {})
+  snapshots            = try(each.value.snapshots, {})
 }
 
 variable "items" {

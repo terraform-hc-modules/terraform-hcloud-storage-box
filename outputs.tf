@@ -42,3 +42,13 @@ output "storage_box" {
   description = "Storage box outputs as an object."
   value       = module.storage_box.storage_box
 }
+
+output "subaccounts" {
+  description = "Map of subaccount outputs (without passwords), keyed like 'subaccounts'."
+  value       = { for k, v in module.subaccount : k => v.subaccount }
+}
+
+output "snapshots" {
+  description = "Map of snapshot outputs, keyed like 'snapshots'."
+  value       = { for k, v in module.snapshot : k => v.snapshot }
+}
