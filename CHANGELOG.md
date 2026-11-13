@@ -1,3 +1,17 @@
+## [1.2.0](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/compare/v1.1.2...v1.2.0) (2026-11-13)
+
+### Features
+
+* new `modules/subaccount` (`hcloud_storage_box_subaccount`, needs hcloud `>= 1.60.1`) and `modules/snapshot` (`hcloud_storage_box_snapshot`)
+* root inputs `subaccounts`, `snapshots` and sensitive `subaccount_passwords`; `examples/subaccount-snapshot`
+
+### Bug Fixes
+
+* hcloud provider floor raised to `>= 1.60` (Storage Box GA)
+* README no longer shows the experimental banner
+
+[#12](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/pull/12), [#13](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/pull/13), closes [#11](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/issues/11)
+
 # [1.1.0](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/compare/v1.0.0...v1.1.0) (2026-04-20)
 
 
