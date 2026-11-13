@@ -1,15 +1,10 @@
 # Hetzner Cloud Storage Box Module
 
-[![Terraform](https://img.shields.io/badge/Terraform-%3E%3D1.0-blueviolet)](https://www.terraform.io/)
+[![Terraform](https://img.shields.io/badge/Terraform-%3E%3D1.10-blueviolet)](https://www.terraform.io/)
 [![License: MPL-2.0](https://img.shields.io/badge/License-MPL--2.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
 [![CI](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/terraform-hc-modules/terraform-hcloud-storage-box)](https://github.com/terraform-hc-modules/terraform-hcloud-storage-box/releases)
 
-
-> **⚠️ EXPERIMENTAL / BETA**
->
-> This module uses Hetzner Storage Box resources which are marked as experimental.
-> Use with caution in production environments.
 
 Terraform module for Hetzner Storage Box (network storage).
 
@@ -39,7 +34,7 @@ module "storage" {
 | Name | Version |
 | ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.0 |
-| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.45 |
+| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.60 |
 
 ## Providers
 
@@ -49,7 +44,9 @@ No providers.
 
 | Name | Source | Version |
 | ---- | ------ | ------- |
+| <a name="module_snapshot"></a> [snapshot](#module\_snapshot) | ./modules/snapshot | n/a |
 | <a name="module_storage_box"></a> [storage\_box](#module\_storage\_box) | ./modules/storage-box | n/a |
+| <a name="module_subaccount"></a> [subaccount](#module\_subaccount) | ./modules/subaccount | n/a |
 
 ## Resources
 
@@ -67,8 +64,11 @@ No resources.
 | <a name="input_labels"></a> [labels](#input\_labels) | Labels to apply. | `map(string)` | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | Location of the storage box. | `string` | `"fsn1"` | no |
 | <a name="input_snapshot_plan"></a> [snapshot\_plan](#input\_snapshot\_plan) | Snapshot plan configuration. | <pre>object({<br/>    max_snapshots = number<br/>    minute        = number<br/>    hour          = number<br/>    day_of_week   = optional(number)<br/>    day_of_month  = optional(number)<br/>  })</pre> | `null` | no |
+| <a name="input_snapshots"></a> [snapshots](#input\_snapshots) | Map of manual snapshots to create on the storage box. | <pre>map(object({<br/>    description = optional(string)<br/>    labels      = optional(map(string), {})<br/>  }))</pre> | `{}` | no |
 | <a name="input_ssh_keys"></a> [ssh\_keys](#input\_ssh\_keys) | SSH public keys to inject. | `set(string)` | `[]` | no |
 | <a name="input_storage_box_type"></a> [storage\_box\_type](#input\_storage\_box\_type) | Type of the storage box (e.g., bx11, bx21). | `string` | `"bx11"` | no |
+| <a name="input_subaccount_passwords"></a> [subaccount\_passwords](#input\_subaccount\_passwords) | Map of subaccount passwords, keyed like 'subaccounts'. Kept separate so the rest of the subaccount config stays visible in plans. | `map(string)` | `{}` | no |
+| <a name="input_subaccounts"></a> [subaccounts](#input\_subaccounts) | Map of subaccounts to create on the storage box. Passwords are set via 'subaccount\_passwords' using the same keys. | <pre>map(object({<br/>    name           = optional(string)<br/>    home_directory = string<br/>    description    = optional(string)<br/>    labels         = optional(map(string), {})<br/>    access_settings = optional(object({<br/>      reachable_externally = optional(bool)<br/>      readonly             = optional(bool)<br/>      samba_enabled        = optional(bool)<br/>      ssh_enabled          = optional(bool)<br/>      webdav_enabled       = optional(bool)<br/>    }))<br/>  }))</pre> | `{}` | no |
 
 ## Outputs
 
@@ -80,8 +80,10 @@ No resources.
 | <a name="output_name"></a> [name](#output\_name) | Name of the storage box. |
 | <a name="output_server"></a> [server](#output\_server) | FQDN of the storage box. |
 | <a name="output_snapshot_plan"></a> [snapshot\_plan](#output\_snapshot\_plan) | Snapshot plan of the storage box. |
+| <a name="output_snapshots"></a> [snapshots](#output\_snapshots) | Map of snapshot outputs, keyed like 'snapshots'. |
 | <a name="output_storage_box"></a> [storage\_box](#output\_storage\_box) | Storage box outputs as an object. |
 | <a name="output_storage_box_type"></a> [storage\_box\_type](#output\_storage\_box\_type) | Type of the storage box. |
+| <a name="output_subaccounts"></a> [subaccounts](#output\_subaccounts) | Map of subaccount outputs (without passwords), keyed like 'subaccounts'. |
 | <a name="output_username"></a> [username](#output\_username) | Primary username. |
 <!-- END_TF_DOCS -->
 
